@@ -24,7 +24,7 @@ namespace WS.MvcUI.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var token = HttpContext.Session.GetString("AccessToken");
+            var token = HttpContext.Session.GetString("AccesToken");
             var jwt =JsonSerializer.Deserialize<AccesTokenItem>(token);
 
             //aşagıdaki endpointbir token istiyor. GetData metodu üzerinden bu tokeni endpointe göndermemiz lazım

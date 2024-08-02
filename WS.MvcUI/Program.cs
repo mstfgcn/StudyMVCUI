@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(); // uygulama içinde HttpContext.Session ý kullanabilmemizi saðlamak için cotainer a register ediyoruz.
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpContextAccessor();//sidebarda session kullanmak için gerekli
 
 
 //IoC ye  HttpClient oluþturmak ve HttpApiServici  nesnelerini üretmek için gerekli direktif.

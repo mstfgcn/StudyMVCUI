@@ -10,7 +10,7 @@ namespace WS.MvcUI.Areas.AdminPanel.Controllers
     [Area("AdminPanel")]
     public class AuthController : Controller
     {
-        
+
         private readonly IHttpApiService _httpApiService;
 
         public AuthController(IHttpApiService httpApiService)
@@ -25,37 +25,35 @@ namespace WS.MvcUI.Areas.AdminPanel.Controllers
             return View();
         }
 
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> LogIn(LogInDto dto)
         {
-            string endPoint = $"/api/AdminPanelUser/login?userName={dto.UserName}&password={dto.Password}";
-            var response=await _httpApiService.GetData<ResponseBody<AdminPanelUserItem>>(endPoint);
+            string endPoint = $"/AdminPanelUser/login?userName={dto.UserName}&password={dto.Password}";
+            var response = await _httpApiService.GetData<ResponseBody<AdminPanelUserItem>>(endPoint);
 
 
 
-                if (response.StatusCode== 200)
-                {
-                    
-                    HttpContext.Session.SetString("ActiveAdminPanelUser",JsonSerializer.Serialize(response.Data));
+            if (response.StatusCode == 200)
+            {
+                //value string istedigi için çevirdik.
+                //kullanıcı bilgisini(response.Data) sessiona bu key(activeadminpaneluser) ile kaydet
+                HttpContext.Session.SetString("ActiveAdminPanelUser", JsonSerializer.Serialize(response.Data));
+                await GetTokenAndSetInSession();                
+                return Json(new { IsSuccess = true, Message = "başaralı" });
+            }
+            else
+            {
+                return Json(new { IsSuccess = false, Message = response.ErrorMessages });
+            }
 
-                 await GetTokenAndSetInSession();
-                    //value string istedigi şiçin çevirdik.
-                    //kullanıcı bilgisini sesson kaydet
-                    return Json(new { IsSuccess = true, Message = "başaralı" });
-                }
-                else
-                {
-                    return Json(new { IsSuccess = false, Message = response.ErrorMessages});
-                }
-         
-            
+
         }
 
         public async Task GetTokenAndSetInSession()
         {
-            var response = await _httpApiService.GetData<ResponseBody<AccesTokenItem>>($"/auth/gettoken");
+            var response = await _httpApiService.GetData<ResponseBody<AccesTokenItem>>($"/AdminPanelUser/gettoken");
 
-            HttpContext.Session.SetString("AccesToken",JsonSerializer.Serialize<AccesTokenItem>(response.Data));
+            HttpContext.Session.SetString("AccesToken", JsonSerializer.Serialize<AccesTokenItem>(response.Data));
 
         }
     }

@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="~/adminPanel/plugins/summernote/summernote-bs4.min.css">
 
 
-    @RenderSection("customerStyles", false)
+    @RenderSection("customStyles", false)
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -44,7 +44,8 @@
         <partial name="_NavBar" />
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <partial name="_SideBar" />
+        @* <partial name="_SideBar" /> *@
+        @await Component.InvokeAsync("SideBar")
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

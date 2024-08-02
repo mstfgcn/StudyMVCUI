@@ -18,6 +18,7 @@ namespace WS.MvcUI.Areas.AdminPanel.Filters
 
             if (string.IsNullOrEmpty(sessionData)) 
             {
+                //Login olmamış 
                 context.Result = new RedirectToActionResult("LogIn", "Auth", null);         
             }
 
