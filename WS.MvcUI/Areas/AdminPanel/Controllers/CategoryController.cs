@@ -44,7 +44,6 @@ namespace WS.MvcUI.Areas.AdminPanel.Controllers
 
             //sunucuya veriyi gönder
 
-
             //DOSYA YÜKLEME İŞLEMİ
             var randomFileName = $"{Guid.NewGuid()}{Path.GetExtension(categoryImage.FileName)}";
             var uploadPath = $@"{_webHostEnvironment.WebRootPath}/adminPanel/categoryImages/{randomFileName}";
@@ -53,6 +52,7 @@ namespace WS.MvcUI.Areas.AdminPanel.Controllers
             {
                 await categoryImage.CopyToAsync(fs);
             }
+
             var postData = new
             {
                 categoryName = dto.CategoryName,

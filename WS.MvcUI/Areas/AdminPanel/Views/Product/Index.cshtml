@@ -1,6 +1,47 @@
-﻿
+﻿@using WS.MvcUI.Areas.AdminPanel.Models.ApiTypes
+
 @{
     Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
 }
 
+@model List<ProductItem>
+
 <b>product paneli içerik</b>
+
+1-YENİ ÜRÜN EKLEMESİ YAPILSIN.
+
+2- SON EKLENEN 5 ÜRÜN GÖSTERİLSİN 
+
+3-ARAMA KISMA OLABİLİR
+
+
+<div class="tab-pane" id="tab_2">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Yeni Ürün Kayıt Formu</h3>
+        </div>
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Adı</label>
+                    <input type="text" class="form-control" id="txtProductName" placeholder="Ürün Adı">
+                </div>
+                <div class="form-group">
+                    <label>Stok Miktarı</label>
+                    <textarea id="txtUnitStock" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Fiyat</label>
+                    <input type="text" class="form-control" id="txtUnitPrice" placeholder="Ürün Fiyatı">
+                </div>
+                <div class="form-group">
+                    <label>Fiyat</label>
+                    <input type="text" class="form-control" id="txtUnitPrice" placeholder="Ürün Fiyatı">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="btnSave" type="button" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
